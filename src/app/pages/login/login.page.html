@@ -1,0 +1,46 @@
+<ion-header [translucent]="true"></ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngTemplateOutlet="head"></ng-container>
+  <ng-container *ngTemplateOutlet="main"></ng-container>
+</ion-content>
+
+<ng-template #head>
+  <div class="d-flex flex-column align-items-center font-size-35 m-t-20">
+    <div class="font-light">Bem-vindo</div>
+    <div class="font-light">Braver</div>
+  </div>
+</ng-template>
+
+<ng-template #main>
+  <div class="d-flex flex-column align-items-center gap-15 m-t-40">
+    <ng-container *ngTemplateOutlet="forms"></ng-container>
+    <ng-container *ngTemplateOutlet="register"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #forms>
+  <div class="d-flex flex-column align-items-center gap-10">
+    <span>Login</span>
+
+    <ion-input type="email" label="email" label-placement="stacked" fill="outline" placeholder="brave@gmail.com"></ion-input>
+
+    <ion-input [type]="this.passwordPropertie.type" label="senha" label-placement="stacked" fill="outline" [placeholder]="this.passwordPropertie.placeholder">
+      <ion-icon slot="end" [name]="this.passwordPropertie.icon + '-outline'" class="pointer font-size-22" (click)="modifyPasswordPropertie()"></ion-icon>
+    </ion-input>
+
+    <ion-button class="submit-button w-100">Entrar</ion-button>
+  </div>
+</ng-template>
+
+<ng-template #register>
+  <div class="d-flex flex-column align-items-center gap-10">
+    <span>
+      1ª vez aqui ?
+    </span>
+
+    <a (click)="this.utilsService.redirect('register')">
+      <u>Cadastre-se</u>
+    </a>
+  </div>
+</ng-template>

@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngTemplateOutlet="head"></ng-container>
+  <ng-container *ngTemplateOutlet="body"></ng-container>  
+  <ng-container *ngTemplateOutlet="footer"></ng-container>  
+</ion-content>
+
+<ng-template #backButton>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ng-template>
+
+<ng-template #head>
+  <ion-header collapse="condense" class="d-flex flex-column align-items-center gap-10 m-t-75">
+    <ion-avatar class="avatar m-t-10">
+      <img alt="Foto de perfil" [src]="spiderPhoto"/>
+    </ion-avatar>
+
+    <span class="font-size-22 font-light name">Peter B. Parker</span>
+  </ion-header>
+</ng-template>
+
+<ng-template #body>
+  <div class="m-t-30 d-flex flex-column gap-10">
+    <div class="d-flex justify-content-center gap-10">
+      <ion-button class="col-5 default-button">Anotações</ion-button>
+      <ion-button class="col-5 default-button">Amigos</ion-button>
+    </div>
+    
+    <div class="d-flex justify-content-center gap-10">
+      <ion-button class="col-5 default-button">Marcações</ion-button>
+      <ion-button class="col-5 default-button">Eventos</ion-button>
+    </div>
+    
+    <div class="d-flex justify-content-center">
+      <ion-button class="w-86 default-button">Dados Cadastrais</ion-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #footer>
+  <app-tabs></app-tabs>
+</ng-template>
+
+

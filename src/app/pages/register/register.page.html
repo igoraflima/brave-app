@@ -1,0 +1,60 @@
+<ion-header [translucent]="false"></ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="m-t-10 d-flex flex-column align-items-center gap-15">
+    <ng-container *ngTemplateOutlet="form"></ng-container>
+    <ng-container *ngTemplateOutlet="button"></ng-container>
+  </div>
+</ion-content>
+
+<ng-template #form>
+  <div class="w-80 d-flex flex-column gap-15">
+    <ion-input type="text" label="nome" label-placement="stacked" fill="outline" placeholder="Nome completo"></ion-input>
+    
+    <ng-container *ngTemplateOutlet="pickerTime"></ng-container>
+  
+    <ion-input type="email" label="email" label-placement="stacked" fill="outline" placeholder="E-mail"></ion-input>
+  
+    <ion-input [type]="this.passwordPropertie.type" label="senha" label-placement="stacked" fill="outline" [placeholder]="this.passwordPropertie.placeholder">
+      <ion-icon slot="end" [name]="this.passwordPropertie.icon + '-outline'" class="pointer font-size-22" (click)="modifyPasswordPropertie()"></ion-icon>
+    </ion-input>
+   
+    <ion-input type="text" label="CPF" label-placement="stacked" fill="outline" placeholder="000.000.000-00" mask="000.000.000-00"></ion-input>
+   
+    <ng-container *ngTemplateOutlet="genderList"></ng-container>
+  
+    <ng-container *ngTemplateOutlet="christianCheckbox"></ng-container> 
+  </div>
+</ng-template>
+
+<ng-template #button>
+  <ion-button class="m-t-20 col-11 default-button" (click)="utilsService.redirect('home')">Cadastrar</ion-button>
+</ng-template>
+
+<ng-template #pickerTime>
+  <ion-datetime-button class="m-t-10" datetime="datetime"></ion-datetime-button>
+
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="datetime" presentation="date"></ion-datetime>
+    </ng-template>
+  </ion-modal>
+</ng-template>
+
+<ng-template #genderList>
+  <ion-list>
+    <ion-item>
+      <ion-select interface="alert" placeholder="Sexo">
+        <ion-select-option value="female">Femino</ion-select-option>
+        <ion-select-option value="male">Masculino</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ng-template>
+
+<ng-template #christianCheckbox>
+  <ion-item>
+    <ion-checkbox slot="start"></ion-checkbox>
+    <ion-label>Cristão</ion-label>
+  </ion-item>
+</ng-template>

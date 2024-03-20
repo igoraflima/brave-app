@@ -1,0 +1,30 @@
+.swiper {
+    width: 200px;
+    height: 320px;
+  }
+  
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  border-radius: 18px;
+}
+
+.card-label {
+  transform: rotate(270deg);
+  font-weight: bold;
+  font-size: 22px;
+  color: #fff;
+}
+
+.swiper-slide:nth-child(1n) {
+  background-color: rgb(100, 51, 131);
+}
+
+.swiper-slide:nth-child(2n) {
+  background-color: rgb(27, 52, 102);
+}
+
+.swiper-slide:nth-child(3n) {
+  background-color: rgb(205, 81, 43);
+}

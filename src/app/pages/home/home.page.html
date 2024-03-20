@@ -1,0 +1,33 @@
+<ion-header [translucent]="true"></ion-header>
+
+<ion-content [fullscreen]="true" class="background">
+  <ng-container *ngTemplateOutlet="title"></ng-container>
+
+  <div class="d-flex flex-column align-items-center gap-20 m-t-30">
+    <ng-container *ngTemplateOutlet="slider"></ng-container>
+    <ng-container *ngTemplateOutlet="calendar"></ng-container>
+    <ng-container *ngTemplateOutlet="eventModal"></ng-container>
+  </div>
+
+</ion-content>
+
+<ng-template #title>
+  <h1 class="m-t-25 m-l-30 font-bold">Devocional</h1>
+</ng-template>
+
+<ng-template #slider>
+  <app-slider></app-slider>
+</ng-template>
+
+<ng-template #calendar>
+  <ion-datetime class="w-86" presentation="date" [multiple]="true" [highlightedDates]="highlightedDates" 
+    [isDateEnabled]="isDateEnabledToSelect" (ionChange)="viewEvent()"></ion-datetime>
+</ng-template>
+
+<ng-template #eventModal>
+  <ion-modal [keepContentsMounted]="true" [isOpen]="isModalOpen">
+    <ng-template>
+      <app-event-description [closeModal]="closeModal" class="h-100"></app-event-description>
+    </ng-template>
+  </ion-modal>
+</ng-template>
