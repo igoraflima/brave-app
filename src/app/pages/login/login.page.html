@@ -23,13 +23,13 @@
   <div class="d-flex flex-column align-items-center gap-10">
     <span>Login</span>
 
-    <ion-input type="email" label="email" label-placement="stacked" fill="outline" placeholder="brave@gmail.com"></ion-input>
+    <ion-input [(ngModel)]="login" type="email" label="email" label-placement="stacked" fill="outline" placeholder="brave@gmail.com"></ion-input>
 
-    <ion-input [type]="this.passwordPropertie.type" label="senha" label-placement="stacked" fill="outline" [placeholder]="this.passwordPropertie.placeholder">
+    <ion-input [(ngModel)]="password" [type]="this.passwordPropertie.type" label="senha" label-placement="stacked" fill="outline" [placeholder]="this.passwordPropertie.placeholder">
       <ion-icon slot="end" [name]="this.passwordPropertie.icon + '-outline'" class="pointer font-size-22" (click)="modifyPasswordPropertie()"></ion-icon>
     </ion-input>
 
-    <ion-button class="submit-button w-100">Entrar</ion-button>
+    <ion-button class="submit-button w-100" (click)="submit()" [disabled]="this.disableButton">Entrar</ion-button>
   </div>
 </ng-template>
 
