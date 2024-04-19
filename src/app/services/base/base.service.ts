@@ -15,7 +15,6 @@ export class BaseService {
   private readonly BRAVE_PATH = environment.BRAVE_PATH;
 
   public find(url: string, params?: any): Observable<any> {
-    console.log(this.getOptions(params))
    return this.http.get(this.getFullUrl(url), this.getOptions(params));
   }
 

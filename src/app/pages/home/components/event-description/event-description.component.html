@@ -1,34 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title [innerText]="title"></ion-title>
+    <ion-title [innerText]="entity.name || ''"></ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()">Fechar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <div style="display: flex; flex-direction: column; gap: 10px;">
+  <ng-container *ngTemplateOutlet="main"></ng-container>
+</ion-content>
+
+<ng-template #main>
+  <div *ngIf="!loading, else load" class="d-flex flex-column gap-10">
     <div>
       <span class="font-semibold">Dia: </span>
-      <span>25/01/2024</span>
+      <span>{{entity.eventDate | date: 'dd/MM/yyyy'}}</span>
     </div>
   
     <div>
       <span class="font-semibold">Horário: </span>
-      <span>19:00</span>
+      <span>{{entity.eventDate | date: 'HH:mm'}}</span>
     </div>
   
     <div>
       <span class="font-semibold">Local: </span>
-      <span>Rua Domingos Sávio, n 90, apto 203</span>
+      <span>{{entity.address}}</span>
     </div>
   
     <div>
       <span class="font-semibold">Descrição </span>
       <p class="m-t-5">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
-        reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
-        dicta.
+        {{entity.description}}
       </p>
     </div>
 
@@ -36,5 +38,8 @@
       <ion-button expand="block">Confirmar Presença</ion-button>
     </div>
   </div>
-  
-</ion-content>
+</ng-template>
+
+<ng-template #load>
+  <ion-loading [isOpen]="loading" spinner="circles"></ion-loading>
+</ng-template>
