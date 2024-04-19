@@ -7,6 +7,7 @@
     <ng-container *ngTemplateOutlet="slider"></ng-container>
     <ng-container *ngTemplateOutlet="calendar"></ng-container>
     <ng-container *ngTemplateOutlet="eventModal"></ng-container>
+    <!-- <ion-button id="open-loading">Click</ion-button> -->
   </div>
 
 </ion-content>
@@ -20,14 +21,18 @@
 </ng-template>
 
 <ng-template #calendar>
-  <ion-datetime class="w-86" presentation="date" [multiple]="true" [highlightedDates]="highlightedDates" 
-    [isDateEnabled]="isDateEnabledToSelect" (ionChange)="viewEvent()"></ion-datetime>
+  <ion-datetime *ngIf="!loading, else load" class="w-86" presentation="date" [multiple]="false" [highlightedDates]="highlightedDates" 
+    [isDateEnabled]="isDateEnabledToSelect" (ionChange)="viewEvent($event)"></ion-datetime>
 </ng-template>
 
 <ng-template #eventModal>
-  <ion-modal [keepContentsMounted]="true" [isOpen]="isModalOpen">
+  <ion-modal *ngIf="!!this.eventId" [keepContentsMounted]="false" [isOpen]="isModalOpen">
     <ng-template>
-      <app-event-description [closeModal]="closeModal" class="h-100"></app-event-description>
+      <app-event-description [closeModal]="closeModal" [eventId]="this.eventId" class="h-100"></app-event-description>
     </ng-template>
   </ion-modal>
+</ng-template>
+
+<ng-template #load>
+  <ion-loading  [isOpen]="loading" spinner="circles"></ion-loading>
 </ng-template>
